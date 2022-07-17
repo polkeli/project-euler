@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 const (
@@ -51,6 +52,8 @@ func main() {
 	var (
 		total = ""
 		carried = 0
+
+		start = time.Now()
 	)
 
 	for x := w-1; x >= 0; x-- {
@@ -72,6 +75,10 @@ func main() {
 		}
 	}
 
+	total = fmt.Sprintf("%d%s", carried, total)
+	end := time.Since(start)
+
 	fmt.Printf("full:		%s\n", total)
 	fmt.Printf("first 10:	%s\n", string(total[0:10]))
+	fmt.Printf("took:		%dμs\n", end.Microseconds())
 }
