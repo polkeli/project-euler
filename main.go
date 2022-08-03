@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 /*
@@ -12,27 +13,30 @@ import (
 * numbers from 1 to 20?
 */
 
-func main() {
-	done := false
-	for x := 2520; !done; x++{
-		found := true
-		for y := 1; y <= 20; y++ {
-			if (x/y) % 2 != 0 {
-				found = false
-				break
-			}
+func check(n float64) bool {
+	for i := 1.0; i <= 20; i++ {
+		//fmt.Printf("(%f/%f) %% 1 = %f\n", n, i, math.Mod(n/i, 1))
+		if math.Mod(n/i, 1) != 0 {
+			return false
 		}
+	}
+	return true
+}
 
-		if found {
+func main() {
+	for x := 1.0; true; x++{
+		//fmt.Printf("checking %f\n", x)
+		if check(x) {
 			fmt.Println(x)
 
-			// bit of DEBUG output to confirm
 			/*
-			* for y := 1; y <= 20; y++ {
-			*	fmt.Printf("(%d/%d) %% 2 = %d\n",x, y, (x/y) % 2)
-			* }
+			// bit of DEBUG output to confirm
+			for y := 1.0; y <= 10; y++ {
+				fmt.Printf("(%f/%f) %% 1 = %f\n",x, y, math.Mod(x/y, 1))
+			}
 			*/
-			done = found // this breaks us out of the loop
+
+			return
 		}
 	}
 }
